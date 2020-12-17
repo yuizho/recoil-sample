@@ -11,10 +11,8 @@ type Prop = {
 const TodoItem: FC<Prop> = ({ id, text, isCompleted }) => {
   const [todos, setTodos] = useRecoilState(todosState);
   const index = todos.findIndex((todo) => todo.id === id);
-  const [textDecorationLine, setTextDecorationLine] = useState('none');
 
   const complete = () => {
-    setTextDecorationLine(isCompleted ? 'none' : 'line-through');
     const newTodos = [
       ...todos.slice(0, index),
       { id, text, isCompleted: !isCompleted },
@@ -31,7 +29,11 @@ const TodoItem: FC<Prop> = ({ id, text, isCompleted }) => {
         onChange={complete}
         checked={isCompleted}
       />
-      <label htmlFor={id.toString()} style={{ textDecorationLine }} key={id}>
+      <label
+        htmlFor={id.toString()}
+        style={{ textDecorationLine: isCompleted ? 'line-through' : 'none' }}
+        key={id}
+      >
         {text}
       </label>
     </div>
