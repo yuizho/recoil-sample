@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import Counter from './components/Counter';
 import { RecoilRoot } from 'recoil';
 import Todo from 'components/Todo';
+import Home from 'components/Home';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Switch>
         <Route path="/counter" component={Counter} />
         <Route path="/todo" component={Todo} />
-        <Route path="/" component={Counter} />
+        <Route path="/" component={Home} />
         <Redirect to="/" />
       </Switch>
     </RecoilRoot>
