@@ -1,3 +1,4 @@
+import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { useRecoilState } from 'recoil';
 import { filterState, FilterType } from 'state/TodoState';
@@ -5,36 +6,19 @@ import { filterState, FilterType } from 'state/TodoState';
 const TodoFilter: FC = () => {
   const [filter, setFilter] = useRecoilState(filterState);
 
-  const changeFilter = (filterType: FilterType) => {
-    setFilter(filterType);
+  const changeFilter = (text: React.ReactText) => {
+    setFilter(text as FilterType);
   };
 
   return (
     <div>
-      <input
-        name="filter"
-        id="radio-all"
-        type="radio"
-        onChange={() => changeFilter('ALL')}
-        checked={filter === 'ALL'}
-      />
-      <label htmlFor="radio-all">ALL</label>
-      <input
-        name="filter"
-        id="radio-completed"
-        type="radio"
-        onChange={() => changeFilter('COMPLETED')}
-        checked={filter === 'COMPLETED'}
-      />
-      <label htmlFor="radio-completed">COMPLETED</label>
-      <input
-        name="filter"
-        id="radio-uncompleted"
-        type="radio"
-        onChange={() => changeFilter('UNCOMPLETED')}
-        checked={filter === 'UNCOMPLETED'}
-      />
-      <label htmlFor="radio-uncompleted">UNCOMPLETED</label>
+      <RadioGroup onChange={(event) => changeFilter(event)} value={filter}>
+        <Stack direction="row">
+          <Radio value="ALL">ALL</Radio>
+          <Radio value="COMPLETED">COMPLETED</Radio>
+          <Radio value="UNCOMPLETED">UNCOMPLETED</Radio>
+        </Stack>
+      </RadioGroup>
     </div>
   );
 };

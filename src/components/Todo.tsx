@@ -1,3 +1,4 @@
+import { Container, Heading } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { filteredTodoState } from 'state/TodoState';
@@ -10,16 +11,21 @@ const Todo: FC = () => {
 
   return (
     <>
-      <h1>Todo</h1>
-      <TodoItemCreator />
-      <TodoFilter />
-      {todos.map((todo) => (
-        <TodoItem
-          id={todo.id}
-          text={todo.text}
-          isCompleted={todo.isCompleted}
-        />
-      ))}
+      <Container mt={4}>
+        <Heading>Todo</Heading>
+        <br />
+        <TodoItemCreator />
+        <br />
+        <TodoFilter />
+        <br />
+        {todos.map((todo) => (
+          <TodoItem
+            id={todo.id}
+            text={todo.text}
+            isCompleted={todo.isCompleted}
+          />
+        ))}
+      </Container>
     </>
   );
 };
